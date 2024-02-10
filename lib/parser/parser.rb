@@ -17,15 +17,17 @@ class Parser
     raise "Expected #{val} but got #{@tokens[@pos].token_value}" unless val.nil? || (@tokens[@pos].token_value == val)
 
     # TODO: Add error handling
-    @tokens[@pos += 1]
+    @pos += 1
+    @tokens[@pos - 1]
   end
 
   def parse_func
     consume(:ident, 'func')
-    consume(:ident, nil)
+    t = consume(:ident, nil)
     consume(:l_paren, nil)
     consume(:r_paren, nil)
     consume(:l_brace, nil)
     consume(:r_brace, nil)
+    @tree.add_branch(ParseTree.new(:function, t.token_value, []))
   end
 end

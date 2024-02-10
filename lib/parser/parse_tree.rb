@@ -6,6 +6,7 @@
 # FUNCTION will have value of IDENT, branches of EXPR (parameter) and EXPR
 # EXPR is undecided
 class ParseTree
+  attr_reader :type, :value, :branches
   def initialize(type, value, branches)
     @type = type
     @value = value
