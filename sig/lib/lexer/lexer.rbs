@@ -1,0 +1,11 @@
+class Lexer
+  @code: Array[String]
+
+  @pos: Integer
+
+  attr_reader tokens: Array[Token]
+
+  def initialize: (string code) -> void
+
+  def lex_all: () -> void
+end

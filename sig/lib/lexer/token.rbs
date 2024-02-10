@@ -1,0 +1,16 @@
+class Token
+  attr_reader token_type: TokenType
+
+  attr_reader token_value: String
+end
+
+module TokenType
+  INT: :integer
+  IDENT: :ident
+  SEMIS: :semis
+  L_PAREN: :l_paren
+  R_PAREN: :r_paren
+  L_BRACE: :l_brace
+  R_BRACE: :r_brace
+  COLON: :colon
+end
