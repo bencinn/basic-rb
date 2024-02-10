@@ -16,7 +16,7 @@ class Lexer
       when ';'
         @tokens.push(Token.new(:semis, ';'))
         @pos += 1
-      when " ", "\n", "\r\n"
+      when ' ', "\n", "\r\n"
         @pos += 1
       when '0'..'9'
         val = []

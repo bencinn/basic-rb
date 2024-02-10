@@ -1,0 +1,9 @@
+class Parser
+  @tokens: Array[Token]
+
+  @pos: Integer
+
+  def initialize: (Array[Token] tokens) -> void
+
+  def consume: (TokenType type, String | nil val) -> Token
+end

@@ -1,0 +1,13 @@
+class ParseTree
+  @type: ParseTreeType
+  @value: String | nil
+  @branches: Array[ParseTree] | nil
+
+  def initialize: (ParseTreeType type, String | nil value, Array[ParseTree] | nil branches) -> void
+end
+
+module ParseTreeType
+  PROGRAM: :program
+  FUNCTION: :function
+  EXPR: :expr
+end
