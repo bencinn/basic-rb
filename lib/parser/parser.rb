@@ -39,12 +39,12 @@ class Parser
     case token.token_type
     when :plus, :minus
       1
-    when :mult, :div
+    when :star, :slash
       2
     when :l_paren
       0
     else
-      raise "Unknown token type #{token.token_type}"
+      return nil
     end
   end
 
@@ -65,7 +65,21 @@ class Parser
   def parse_expr_with_precedence(lhs, precedence)
     return nil if @pos >= @tokens.length
 
-    ParseTree.new(:expr, nil, [lhs])
+    while @pos < @tokens.length
+      op = @tokens[@pos]
+      break if op.nil? || calculate_precedence(op).nil? || calculate_precedence(op) < precedence
+
+      @pos += 1
+      rhs = parse_primary
+      while @pos < @tokens.length
+        next_op = @tokens[@pos]
+        break if next_op.nil? || calculate_precedence(next_op).nil? || calculate_precedence(next_op) <= precedence
+
+        rhs = parse_expr_with_precedence(rhs, calculate_precedence(next_op))
+      end
+      lhs = ParseTree.new(op.token_type, nil, [lhs, rhs])
+    end
+    lhs
   end
 
   def parse_expr

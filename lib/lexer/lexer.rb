@@ -40,6 +40,18 @@ class Lexer
       when ':'
         @tokens.push(Token.new(:colon, val.join))
         @pos += 1
+      when '+'
+        @tokens.push(Token.new(:plus, '+'))
+        @pos += 1
+      when '-'
+        @tokens.push(Token.new(:minus, '-'))
+        @pos += 1
+      when '*'
+        @tokens.push(Token.new(:star, '*'))
+        @pos += 1
+      when '/'
+        @tokens.push(Token.new(:slash, '/'))
+        @pos += 1
       when 'a'..'z', 'A'..'Z'
         val = []
         while (@code[@pos] in 'a'..'z') || (@code[@pos] in 'A'..'Z')

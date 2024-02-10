@@ -19,14 +19,14 @@ class ParserTest < Minitest::Test
   def test_return_function_consume
     l = Lexer.new('
     func a(){
-      return 1;
+      return 1 + 2;
     }')
     l.lex_all
     tokens = l.tokens
     p = Parser.new(tokens)
     p.send(:parse_func)
     refute_nil(p.tree.branches)
-    assert_equal('program function a return expr int 1', p.tree.parse_tree_to_string)
+    assert_equal('program function a return plus int 1 int 2', p.tree.parse_tree_to_string)
   end
 
   def test_to_string
@@ -36,5 +36,13 @@ class ParserTest < Minitest::Test
     p = Parser.new(tokens)
     p.send(:parse_func)
     assert_equal('program function a', p.tree.parse_tree_to_string)
+  end
+
+  def test_parse_expr
+    l = Lexer.new('1 + 2 * 3')
+    l.lex_all
+    tokens = l.tokens
+    p = Parser.new(tokens)
+    assert_equal('plus int 1 star int 2 int 3', p.send(:parse_expr).parse_tree_to_string)
   end
 end

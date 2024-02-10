@@ -7,6 +7,10 @@ end
 module TokenType
   INT: :integer
   IDENT: :ident
+  PLUS: :plus
+  MINUS: :minus
+  STAR: :star
+  SLASH: :slash
   SEMIS: :semis
   L_PAREN: :l_paren
   R_PAREN: :r_paren

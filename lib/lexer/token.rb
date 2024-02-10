@@ -18,5 +18,8 @@ module TokenType
   L_BRACE = :l_brace
   R_BRACE = :r_brace
   COLON = :colon
-
+  PLUS = :plus
+  MINUS = :minus
+  STAR = :star
+  SLASH = :slash
 end
