@@ -14,9 +14,8 @@ class ParseTree
     @branches = branches
   end
 
-  # TODO: Fix this shit
   def parse_tree_to_string
-    [@type, @value, *@branches&.map(&:parse_tree_to_string)].compact.join(' ')
+    [@type, @value, "(#{@branches&.map(&:parse_tree_to_string)&.join(' ')})"].compact.join(' ')
   end
 
   def add_branch(branch)

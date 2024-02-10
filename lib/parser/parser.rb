@@ -91,6 +91,14 @@ class Parser
     when :integer
       t = consume(:integer, nil)
       ParseTree.new(:int, t.token_value, [])
+    when :ident
+      t = consume(:ident, nil)
+      ParseTree.new(:ident, t.token_value, [])
+    when :l_paren
+      consume(:l_paren, nil)
+      e = parse_expr
+      consume(:r_paren, nil)
+      e
     else
       raise "Unknown token type #{@tokens[@pos].token_type}"
     end
