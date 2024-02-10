@@ -7,9 +7,12 @@ class ParseTree
 end
 
 module ParseTreeType
+  INT: :int
   PROG: :program
   FUNCTION: :function
   EXPR: :expr
+  RETURN: :return
+  VAR_USE: :var_use
 end
 
-type parseTreeTypeSymbol = :program | :function | :expr
+type parseTreeTypeSymbol = :program | :function | :expr | :return

@@ -7,14 +7,16 @@
 # EXPR is undecided
 class ParseTree
   attr_reader :type, :value, :branches
+
   def initialize(type, value, branches)
     @type = type
     @value = value
     @branches = branches
   end
 
-  def to_s
-    "#{@type} #{@value}"
+  # TODO: Fix this shit
+  def parse_tree_to_string
+    "#{@type} #{@value unless @value.nil?} #{@branches.map(&:parse_tree_to_string).join(' ') unless @branches.nil?}"
   end
 
   def add_branch(branch)
@@ -26,4 +28,7 @@ module ParseTreeType
   PROG = :program
   FUNCTION = :function
   EXPR = :expr
+  RETURN = :return
+  VAR_USE = :var_use
+  INT = :int
 end
