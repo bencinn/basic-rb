@@ -42,7 +42,7 @@ class Lexer
         @pos += 1
       when 'a'..'z', 'A'..'Z'
         val = []
-        while @code[@pos] in 'a'..'z' or @code[@pos] in 'A'..'Z'
+        while (@code[@pos] in 'a'..'z') || (@code[@pos] in 'A'..'Z')
           val.push(@code[@pos])
           @pos += 1
         end
