@@ -11,6 +11,16 @@ class Parser
     @tree = ParseTree.new(:program, nil, [])
   end
 
+  def parse_all
+    while @pos < @tokens.length
+      case @tokens[@pos].token_value
+      when 'func'
+        parse_func
+      else
+        raise "Unknown token type #{@tokens[@pos]}"
+      end
+    end
+  end
   private
 
   def consume(type, val)
@@ -28,11 +38,13 @@ class Parser
     t = consume(:ident, nil)
     consume(:l_paren, nil)
     consume(:r_paren, nil)
+    consume(:colon, nil)
+    type = ParseTree.new(:ident, consume(:ident, nil).token_value, nil)
     consume(:l_brace, nil)
-    stmts = []
-    stmts << parse_stmt while @tokens[@pos].token_type != :r_brace
+    stmts_and_types = [type]
+    stmts_and_types << parse_stmt while @tokens[@pos].token_type != :r_brace
     consume(:r_brace, nil)
-    @tree.add_branch(ParseTree.new(:function, t.token_value, stmts))
+    @tree.add_branch(ParseTree.new(:function, t.token_value, stmts_and_types))
   end
 
   def calculate_precedence(token)
@@ -83,7 +95,8 @@ class Parser
   end
 
   def parse_expr
-    parse_expr_with_precedence(parse_primary, 0)
+    primary = parse_primary
+    parse_expr_with_precedence(primary, 0) unless primary.nil?
   end
 
   def parse_primary
@@ -100,7 +113,7 @@ class Parser
       consume(:r_paren, nil)
       e
     else
-      raise "Unknown token type #{@tokens[@pos].token_type}"
+      return nil
     end
   end
 end
