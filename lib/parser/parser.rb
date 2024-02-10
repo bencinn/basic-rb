@@ -50,9 +50,10 @@ class Parser
 
   def parse_stmt
     raise "Unknown token type #{@tokens[@pos]}" unless @tokens[@pos].token_type == :ident
+
     case @tokens[@pos].token_value
-    when "return"
-      consume(:ident, "return")
+    when 'return'
+      consume(:ident, 'return')
       return_tree = ParseTree.new(:return, nil, [parse_expr])
       consume(:semis, nil)
       return_tree
@@ -63,6 +64,7 @@ class Parser
 
   def parse_expr_with_precedence(lhs, precedence)
     return nil if @pos >= @tokens.length
+
     ParseTree.new(:expr, nil, [lhs])
   end
 

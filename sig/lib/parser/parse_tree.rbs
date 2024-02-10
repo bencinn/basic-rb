@@ -4,6 +4,10 @@ class ParseTree
   @branches: Array[ParseTree] | nil
 
   def initialize: (parseTreeTypeSymbol type, String | nil value, Array[ParseTree] | nil branches) -> void
+
+  def add_branch: (ParseTree) -> void
+
+  def parse_tree_to_string: () -> String
 end
 
 module ParseTreeType
