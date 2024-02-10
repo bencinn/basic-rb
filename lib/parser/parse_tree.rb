@@ -11,10 +11,18 @@ class ParseTree
     @value = value
     @branches = branches
   end
+
+  def to_s
+    "#{@type} #{@value}"
+  end
+
+  def add_branch(branch)
+    @branches << branch
+  end
 end
 
 module ParseTreeType
-  PROGRAM
-  FUNCTION
-  EXPR
+  PROG = :program
+  FUNCTION = :function
+  EXPR = :expr
 end

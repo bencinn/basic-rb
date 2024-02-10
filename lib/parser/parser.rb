@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
+require_relative './parse_tree'
+
 class Parser
   def initialize(tokens)
     @tokens = tokens
     @pos = 0
+    @tree = ParseTree.new(:program, nil, [])
   end
 
   private
@@ -23,5 +26,6 @@ class Parser
     consume(:l_paren, nil)
     consume(:r_paren, nil)
     consume(:l_brace, nil)
+    consume(:r_brace, nil)
   end
 end

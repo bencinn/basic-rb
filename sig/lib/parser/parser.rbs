@@ -3,7 +3,13 @@ class Parser
 
   @pos: Integer
 
+  @tree: ParseTree
+
   def initialize: (Array[Token] tokens) -> void
 
-  def consume: (TokenType type, String | nil val) -> Token
+  private
+
+  def consume: (tokenTypeSymbol type, String | nil val) -> Token
+
+  def parse_func: () -> void
 end
