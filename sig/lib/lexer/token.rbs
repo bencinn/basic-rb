@@ -19,4 +19,4 @@ module TokenType
   COLON: :colon
 end
 
-type tokenTypeSymbol = :int | :ident | :semis | :l_paren | :r_paren | :l_brace | :r_brace | :colon
+type tokenTypeSymbol = :int | :ident | :plus | :minus | :star | :slash | :semis | :l_paren | :r_paren | :l_brace | :r_brace | :colon

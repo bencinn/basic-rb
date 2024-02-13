@@ -106,14 +106,12 @@ class Parser
       ParseTree.new(:int, t.token_value, [])
     when :ident
       t = consume(:ident, nil)
-      ParseTree.new(:ident, t.token_value, [])
+      ParseTree.new(:var_use, t.token_value, [])
     when :l_paren
       consume(:l_paren, nil)
       e = parse_expr
       consume(:r_paren, nil)
       e
-    else
-      return nil
     end
   end
 end

@@ -43,7 +43,7 @@ class ParserTest < Minitest::Test
     l.lex_all
     tokens = l.tokens
     p = Parser.new(tokens)
-    assert_equal('plus (int 1 () minus (star (int 2 () int 3 ()) ident x ()))', p.send(:parse_expr).parse_tree_to_string)
+    assert_equal('plus (int 1 () minus (star (int 2 () int 3 ()) var_use x ()))', p.send(:parse_expr).parse_tree_to_string)
   end
 
   def test_parse_expr_with_paren
@@ -51,6 +51,6 @@ class ParserTest < Minitest::Test
     l.lex_all
     tokens = l.tokens
     p = Parser.new(tokens)
-    assert_equal('plus (int 1 () star (star (int 2 () minus (int 3 () ident x ())) ident y ()))', p.send(:parse_expr).parse_tree_to_string)
+    assert_equal('plus (int 1 () star (star (int 2 () minus (int 3 () var_use x ())) var_use y ()))', p.send(:parse_expr).parse_tree_to_string)
   end
 end

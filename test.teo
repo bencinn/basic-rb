@@ -2,5 +2,5 @@ func a(): int {
     return 2;
 }
 func main(): int {
-   return 2 - 1;
+   return (x) - 1;
 }

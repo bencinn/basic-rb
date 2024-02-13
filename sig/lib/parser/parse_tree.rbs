@@ -19,4 +19,4 @@ module ParseTreeType
   VAR_USE: :var_use
 end
 
-type parseTreeTypeSymbol = :program | :function | :expr | :return
+type parseTreeTypeSymbol = :int | :program | :function | :expr | :return | :var_use
