@@ -1,5 +1,19 @@
 # frozen_string_literal: true
+
 require_relative './token'
+
+SYMBOLS = {
+  ';' => :semis,
+  '(' => :l_paren,
+  ')' => :r_paren,
+  '{' => :l_brace,
+  '}' => :r_brace,
+  ':' => :colon,
+  '+' => :plus,
+  '-' => :minus,
+  '*' => :star,
+  '/' => :slash
+}.freeze
 
 class Lexer
   attr_reader :tokens
@@ -25,32 +39,8 @@ class Lexer
           @pos += 1
         end
         @tokens.push(Token.new(:integer, val.join))
-      when '('
-        @tokens.push(Token.new(:l_paren, '('))
-        @pos += 1
-      when ')'
-        @tokens.push(Token.new(:r_paren, ')'))
-        @pos += 1
-      when '{'
-        @tokens.push(Token.new(:l_brace, val.join))
-        @pos += 1
-      when '}'
-        @tokens.push(Token.new(:r_brace, val.join))
-        @pos += 1
-      when ':'
-        @tokens.push(Token.new(:colon, val.join))
-        @pos += 1
-      when '+'
-        @tokens.push(Token.new(:plus, '+'))
-        @pos += 1
-      when '-'
-        @tokens.push(Token.new(:minus, '-'))
-        @pos += 1
-      when '*'
-        @tokens.push(Token.new(:star, '*'))
-        @pos += 1
-      when '/'
-        @tokens.push(Token.new(:slash, '/'))
+      when '(', ')', '{', '}', ':', '+', '-', '*', '/'
+        @tokens.push(Token.new(SYMBOLS[@code[@pos]], @code[@pos]))
         @pos += 1
       when 'a'..'z', 'A'..'Z'
         val = []
@@ -60,9 +50,7 @@ class Lexer
         end
         @tokens.push(Token.new(:ident, val.join))
       else
-        # TODO: Add error handling
-        puts "idk \"#{@code[@pos]}\""
-        @pos += 1
+        raise "Unknown token #{@code[@pos]}"
       end
     end
   end
