@@ -1,6 +1,6 @@
 func a(): int {
     return 2;
 }
-func main(){
-   return a();
+func main(): int {
+   return (x) - 1;
 }

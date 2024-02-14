@@ -1,0 +1,22 @@
+class ParseTree
+  @type: ParseTreeType
+  @value: String | nil
+  @branches: Array[ParseTree] | nil
+
+  def initialize: (parseTreeTypeSymbol type, String | nil value, Array[ParseTree] | nil branches) -> void
+
+  def add_branch: (ParseTree) -> void
+
+  def parse_tree_to_string: () -> String
+end
+
+module ParseTreeType
+  INT: :int
+  PROG: :program
+  FUNCTION: :function
+  EXPR: :expr
+  RETURN: :return
+  VAR_USE: :var_use
+end
+
+type parseTreeTypeSymbol = :int | :program | :function | :expr | :return | :var_use

@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Token
-  attr_reader :token_type
-  attr_reader :token_value
+  attr_reader :token_type, :token_value
 
   def initialize(type, val)
     @token_type = type
@@ -14,5 +13,13 @@ module TokenType
   INT = :integer
   IDENT = :ident
   SEMIS = :semis
-
+  L_PAREN = :l_paren
+  R_PAREN = :r_paren
+  L_BRACE = :l_brace
+  R_BRACE = :r_brace
+  COLON = :colon
+  PLUS = :plus
+  MINUS = :minus
+  STAR = :star
+  SLASH = :slash
 end

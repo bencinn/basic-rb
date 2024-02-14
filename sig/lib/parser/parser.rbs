@@ -1,0 +1,15 @@
+class Parser
+  @tokens: Array[Token]
+
+  @pos: Integer
+
+  @tree: ParseTree
+
+  def initialize: (Array[Token] tokens) -> void
+
+  private
+
+  def consume: (tokenTypeSymbol type, String | nil val) -> Token
+
+  def parse_func: () -> void
+end
